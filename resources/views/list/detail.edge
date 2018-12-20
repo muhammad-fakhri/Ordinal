@@ -1,0 +1,14 @@
+@layout('main')
+@section('content')
+    <a href="/list">Back to List</a>
+    <hr>
+    <h1>{{ anime.title }}</h1>
+    <h2>Detail</h2>
+    <p>Genre : {{ anime.genre }} </p>
+    <hr>
+    <a href="/list/edit/{{ anime.id }}" class="btn btn-dark d-block float-left">Edit</a>
+    <form action="{{ '/list/' + anime.id + '?_method=DELETE' }}" method="POST">
+        {{ csrfField() }}
+        <button type="submit" class="btn btn-danger d-block float-right">Delete</button>
+    </form>
+@endsection
