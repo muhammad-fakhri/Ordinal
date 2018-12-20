@@ -28,6 +28,17 @@ class ListController {
     }
 
     async store({ request, response, session }) {
+        //Validate input
+        const validation = await validate(request.all(), {
+            title: 'required',
+            genre: 'required'
+        })
+
+        if(validation.fails()){
+            session.withErrors(validation.messages()).flashAll()
+            return response.redirect('back')
+        }
+
         const list = new List()
 
         list.title = request.input('title')
