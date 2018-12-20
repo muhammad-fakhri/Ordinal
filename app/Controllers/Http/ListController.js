@@ -3,7 +3,7 @@
 const List = use('App/Models/List')
 
 //Import the validator
-// const { validate } = use('Validator')
+const { validate } = use('Validator')
 
 class ListController {
     async index({ view }){
