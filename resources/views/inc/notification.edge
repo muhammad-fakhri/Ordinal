@@ -1,0 +1,11 @@
+@if(old('notification'))
+@if(old('fail'))
+<div class="alert alert-danger">
+    {{ old('notification') }}
+</div>
+@else
+<div class="alert alert-success">
+    {{ old('notification') }}
+</div>
+@endif
+@endif

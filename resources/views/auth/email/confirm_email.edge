@@ -1,0 +1,8 @@
+<h3>Hello {{ username }} </h3>
+<br>
+<p>Welcome to Ordinal</p>
+<p>Please confirm your email address by clicking the link below</p>
+
+<p>
+<a href="{{ appUrl('register/confirm/' + confirmation_token) }}">Confirm email address</a>
+</p>

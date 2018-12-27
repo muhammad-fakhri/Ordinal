@@ -1,11 +1,7 @@
-@layout('main')
+@layout('layout.main')
 @section('content')
   <h1>Anime List</h1>
-  @if(old('notification'))
-    <div class="alert alert-success">
-        {{ old('notification') }}
-    </div>
-  @endif
+  @include('inc.notification')
   <hr>
     <table class="table table-bordered">
         <thead class="thead-dark">
