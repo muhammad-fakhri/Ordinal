@@ -16,7 +16,7 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.on('/').render('index').as('home').middleware(['auth'])
+Route.on('/').render('home').as('home').middleware(['auth'])
 
 Route.get('/home', 'HomeController.index').middleware(['auth'])
 

@@ -1,19 +1,160 @@
 @layout('layout.main')
 @section('content')
     <a href="/list">Back to List</a>
+    <h2 class="text-center">Edit Anime Information</h2>
     <hr>
-    <h2>Edit: {{ anime.title }}</h2>
-    <h2>Detail</h2>
-    <form action="{{ '/list/' + anime.id + '?_method=PUT' }}" method="POST">
+    <form action="{{ '/list/' + anime.id + '?_method=PUT' }}" method="POST" class="needs-validation" novalidate>
         {{ csrfField() }}
-        <div class="form-group">
+
+        <h3 class="text-center">Basic Info</h3>
+        
+        <div class="form-group text-center">
             <label>Title</label>
-            <input type="text" name="title" class="form-control" placeholder="Title" value="{{ anime.title }}">
+            <input type="text" name="title" class="form-control" placeholder="Title" value="{{ anime.title }}" required>
+            <div class="valid-feedback">
+                Well done! 
+            </div>
+            <div class="invalid-feedback">
+                Please enter a title
+            </div>
         </div>
-        <div class="form-group">
+
+        <div class="form-group text-center">
             <label>Genre</label>
-            <textarea name="genre" class="form-control" placeholder="Genre">{{ anime.genre }}</textarea>
+            <input name="genre" class="form-control" placeholder="Genre" value="{{ anime.genre }}" required>
+            <div class="valid-feedback">
+                Well done !
+            </div>
+            <div class="invalid-feedback">
+                Please enter the genre
+            </div>
         </div>
-        <button class="btn btn-primary" type="submit">Save Edit</button>
+        
+        <div class="row form-group">
+            <div class="col text-center">
+                <label>Episode</label>
+                <input name="episode" class="form-control" placeholder="Episode" value="{{ anime.episode }}">
+            </div>
+            
+            <div class="col text-center">
+                <label>Airing From</label>
+                <input name="airing_from" class="form-control" placeholder="Airing From" value="{{ anime.airing_from }}">
+            </div>
+
+            <div class="col text-center">
+                <label>Airing Until</label>
+                <input name="airing_until" class="form-control" placeholder="Airing Until" value="{{ anime.airing_until }}">
+            </div>
+        </div>
+
+        <hr>
+        <h3 class="text-center">Type and Status</h3>
+
+        <div class="row form-group">
+            <div class="col text-center">
+                <label>Type</label>
+                <select name="type" class="custom-select">
+                    <option>  
+                        @if(anime.type)
+                            {{ anime.type }}
+                        @else
+                            Choose ...
+                        @endif 
+                    </option>
+                    <option>TV</option>
+                    <option>OVA</option>
+                    <option>OAD</option>
+                    <option>ONA</option>
+                    <option>Special</option>
+                    <option>Movie</option>
+                    <option>BD</option>
+                    <option>OVA & BD</option>
+                    <option>OAD & BD</option>
+                    <option>ONA & BD</option>
+                    <option>Special & BD</option>
+                    <option>Movie & BD</option>
+                </select>
+            </div>
+            
+            <div class="col text-center">
+                <label>Status</label>
+                <select name="status" class="custom-select">
+                    <option>
+                    @if(anime.status)
+                      {{ anime.status }}
+                    @else
+                        Choose ... 
+                    @endif
+                    </option>
+                    <option>Watching</option>
+                    <option>Watched</option>
+                    <option>On hold</option>
+                    <option>Dropped</option>
+                    <option>Plan to watch</option>
+                    <option>No</option>
+                </select>
+            </div>
+
+            <div class="col text-center">
+                <label>Download Status</label>
+                <select name="download_status" class="custom-select">
+                    <option>
+                    @if(anime.download_status)
+                        {{ anime.download_status }}
+                    @else
+                        Choose ... 
+                    @endif
+                    </option>
+                    <option>Completed</option>
+                    <option>On Process</option>
+                    <option>Plan to Download</option>
+                    <option>No</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col text-center">
+                <label>Resolution</label>
+                <select name="resolution" class="custom-select">
+                    <option>
+                    @if(anime.resolution)
+                        {{ anime.resolution }}
+                    @else
+                        Choose ... 
+                    @endif
+                    </option>
+                    <option>240p</option>
+                    <option>360p</option>
+                    <option>480p</option>
+                    <option>720p</option>
+                    <option>1080p</option>
+                </select>
+            </div>
+
+            <div class="col text-center">
+                <label>Storage Device</label>
+                <select name="storage_device" class="custom-select">
+                    <option>
+                    @if(anime.storage_device)
+                        {{ anime.storage_device }}
+                    @else
+                        Choose ... 
+                    @endif
+                    </option>
+                    <option>MS-1</option>
+                    <option>Hard Drive</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group text-center">
+            <label>Note</label>
+            <textarea name="note" class="form-control" placeholder="Note">{{ anime.note }}</textarea>
+        </div>
+        
+            <button class="btn btn-lg btn-block btn-dark" type="submit">Save</button> 
     </form>
+    <br>
+    <br>
 @endsection

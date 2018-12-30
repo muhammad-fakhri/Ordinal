@@ -2,13 +2,72 @@
 @section('content')
     <a href="/list">Back to List</a>
     <hr>
-    <h1>{{ anime.title }}</h1>
-    <h2>Detail</h2>
-    <p>Genre : {{ anime.genre }} </p>
+    <h1 class="text-center">{{ anime.title }}</h1>
+    @include('inc.notification')
+    <h2>Basic Info</h2>
+    <table class="table table-borderless">
+        <tbody>
+            <tr>
+                <td style="width: 150px;">Genre</td>
+                <td>: {{ anime.genre }}</td>
+            </tr>
+            <tr>
+                <td>Episode</td>
+                <td>: {{ anime.episode }}</td>
+            </tr>
+            <tr>
+                <td>Airing From</td>
+                <td>: {{ anime.airing_from }}</td>
+            </tr>
+             <tr>
+                <td>Airing Until</td>
+                <td>: {{ anime.airing_until }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>Type and Status</h2>
+    <table class="table table-borderless">
+        <tbody>
+            <tr>
+                <td style="width: 150px;">Type</td>
+                <td>: {{ anime.type }}</td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td>: {{ anime.status }}</td>
+            </tr>
+            <tr>
+                <td>Download Status</td>
+                <td>: {{ anime.download_status }} </td>
+            </tr>
+            <tr>
+                <td>Resolution</td>
+                <td>: {{ anime.resolution }}</td>
+            </tr>
+            <tr>
+                <td>Storage Device</td>
+                <td>: {{ anime.storage_device }}</td>
+            </tr>
+            <tr>
+                <td>Note</td>
+                <td>: {{ anime.note }}</td>
+            </tr>
+        </tbody>
+    </table>
     <hr>
-    <a href="/list/edit/{{ anime.id }}" class="btn btn-dark d-block float-left">Edit</a>
-    <form action="{{ '/list/' + anime.id + '?_method=DELETE' }}" method="POST">
-        {{ csrfField() }}
-        <button type="submit" class="btn btn-danger d-block float-right">Delete</button>
-    </form>
+
+    <div class="row">
+        <div class="col">
+            <a href="/list/edit/{{ anime.id }}" class="btn btn-lg btn-block btn-dark">Edit</a>
+        </div>
+        <div class="col">
+            <form action="{{ '/list/' + anime.id + '?_method=DELETE' }}" method="POST">
+                {{ csrfField() }}
+                <button type="submit" class="btn btn-danger btn-block btn-lg">Delete</button>
+            </form>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
 @endsection

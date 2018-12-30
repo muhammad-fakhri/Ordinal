@@ -1,22 +1,137 @@
 @layout('layout.main')
-
 @section('content')
-<a href="/list">Back to List</a>
-<hr>
-<h1>Add Anime</h1>
-<hr>
-<form action="/list" method="POST">
-    {{ csrfField() }}
-    <div class="form-group">
-        <label>Anime Title</label>
-        <input type="text" name="title" class="form-control" placeholder="Anime Title" value="{{ old('title', '') }}">
-        {{ elIf('<span class="text-danger">$self</span>', getErrorFor('title'), hasErrorFor('title')) }}
-    </div>
-    <div class="form-group">
-        <label>Genre</label>
-        <input type="text" name="genre" class="form-control" placeholder="Genre" value="{{ old('genre', '') }}">
-        {{ elIf('<span class="text-danger">$self</span>', getErrorFor('genre'), hasErrorFor('genre')) }}
-    </div>
-    <button class="btn btn-dark" type="submit">Add</button>
-</form>
+    <a href="/list">Back to List</a>
+    <h2 class="text-center">Add Anime Information</h2>
+    <hr>
+    <form action="/list" method="POST" class="needs-validation" novalidate>
+        {{ csrfField() }}
+
+        <h3 class="text-center">Basic Info</h3>
+
+        <div class="form-group text-center">
+            <label>Title</label>
+            <input type="text" name="title" class="form-control" placeholder="Title" value="{{ old('title', '') }}" required>
+            <div class="valid-feedback">
+                Well done! 
+            </div>
+            <div class="invalid-feedback">
+                Please enter a title
+            </div>
+            {{-- {{ elIf('<span class="text-danger">$self</span>', getErrorFor('title'), hasErrorFor('title')) }} --}}
+        </div>
+
+        <div class="form-group text-center">
+            <label>Genre</label>
+            <input name="genre" class="form-control" placeholder="Genre" value="{{ old('genre', '') }}" required>
+            <div class="valid-feedback">
+                Well done !
+            </div>
+            <div class="invalid-feedback">
+                Please enter the genre
+            </div>
+            {{-- {{ elIf('<span class="text-danger">$self</span>', getErrorFor('genre'), hasErrorFor('genre')) }} --}}
+        </div>
+
+        <div class="row form-group">
+            <div class="col text-center">
+                <label>Episode</label>
+                <input name="episode" class="form-control" placeholder="Episode" value="{{ old('episode', '') }}">
+                {{-- {{ elIf('<span class="text-danger">$self</span>', getErrorFor('episode'), hasErrorFor('episode')) }} --}}
+            </div>
+
+            <div class="col text-center">
+                <label>Airing From</label>
+                <input name="airing_from" class="form-control" placeholder="Airing From" value="{{ old('airing_from', '') }}">
+            </div>
+
+            <div class="col text-center">
+                <label>Airing Until</label>
+                <input name="airing_until" class="form-control" placeholder="Airing Until" value="{{ old('airing_until', '') }}">
+            </div>
+        </div>
+        
+        <hr>
+        <h3 class="text-center">Type and Status</h3>
+
+        <div class="row form-group">
+            <div class="col text-center">
+                <label>Type</label>
+                <select name="type" class="custom-select">
+                    <option>Choose ...</option>
+                    <option>TV</option>
+                    <option>OVA</option>
+                    <option>OAD</option>
+                    <option>ONA</option>
+                    <option>Special</option>
+                    <option>Movie</option>
+                    <option>BD</option>
+                    <option>OVA & BD</option>
+                    <option>OAD & BD</option>
+                    <option>ONA & BD</option>
+                    <option>Special & BD</option>
+                    <option>Movie & BD</option>
+                </select>
+                {{-- {{ elIf('<span class="text-danger">$self</span>', getErrorFor('type'), hasErrorFor('type')) }} --}}
+            </div>
+
+            <div class="col text-center">
+                <label>Status</label>
+                <select name="status" class="custom-select">
+                    <option>Choose ...</option>
+                    <option>Watching</option>
+                    <option>Watched</option>
+                    <option>On hold</option>
+                    <option>Dropped</option>
+                    <option>Plan to watch</option>
+                    <option>No</option>
+                </select>
+                {{-- {{ elIf('<span class="text-danger">$self</span>', getErrorFor('status'), hasErrorFor('status')) }} --}}
+            </div>
+
+            <div class="col text-center">
+                <label>Download Status</label>
+                <select name="download_status" class="custom-select">
+                    <option>Choose ...</option>
+                    <option>Completed</option>
+                    <option>On Process</option>
+                    <option>Plan to Download</option>
+                    <option>No</option>
+                </select>
+                {{-- {{ elIf('<span class="text-danger">$self</span>', getErrorFor('download_status'), hasErrorFor('download_status')) }} --}}
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col text-center">
+                <label>Resolution</label>
+                <select name="resolution" class="custom-select">
+                    <option>Choose ...</option>
+                    <option>240p</option>
+                    <option>360p</option>
+                    <option>480p</option>
+                    <option>720p</option>
+                    <option>1080p</option>
+                </select>
+            </div>
+
+            <div class="col text-center">
+                <label>Storage Device</label>
+                <select name="storage_device" class="custom-select">
+                    <option>Choose ...</option>
+                    <option>MS-1</option>
+                    <option>Hard Drive</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group text-center">
+            <label>Note</label>
+            <textarea name="note" class="form-control" placeholder="Note" value="{{ old('note', '') }}"></textarea>
+        </div>
+        
+            <button class="btn btn-dark btn-lg btn-block" type="submit">Add</button>
+        
+        <br>
+        <br>
+    </form>
 @endsection
